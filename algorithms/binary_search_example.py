@@ -1,3 +1,5 @@
+from binary_search import binary_recursive
+
 def search_indices(number_list, findnumber):
   index = binary_recursive(number_list, findnumber)
   indices = [index]
