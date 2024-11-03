@@ -68,14 +68,14 @@ child1.add_child(child12)
 child2.add_child(child22)
 child2.add_child(child21)
 
-root.print_tree(choice="both")
-
+root.print_tree("name", 1)
+print("----------------------")
 
 root = TreeNode("Global", "World")
 
 count1 = TreeNode("India",    "Country")
 count2 = TreeNode("USA",      "Country")
-count3 = TreeNode("Pakistan", "Country")
+count3 = TreeNode("Pakistan", "Country") 
 
 city11 = TreeNode("Gujrat",     "State")
 city12 = TreeNode("Karnataka",  "State")
@@ -103,4 +103,4 @@ city21.add_child(city211)
 count3.add_child(city31)
 city31.add_child(city311)
 
-root.print_tree("name", 1)
+root.print_tree("name", 2)
