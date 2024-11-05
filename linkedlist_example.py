@@ -96,10 +96,14 @@ class polynomials:
     def show_polynomial(self):
         current = self.head
         while current:
-            print(f"{current.const}x^{current.exp} ", end=" ")
+            if current.exp == 0:
+                print(current.const, end=" ")
+            else:
+                print(f"{current.const}x^{current.exp} ", end=" ")
             if current.next:
                 print("+", end=" ")
             current = current.next
+        print()
     
     def sum(poly1, poly2):
         result = polynomials()
@@ -107,11 +111,8 @@ class polynomials:
         p2 = poly2.head
 
         while p1 and p2:
-            if p1.exp == p2.exp:
-                new_const = p1.const + p2.const
-                if new_const != 0:
-                    result.insert(p1.exp, new_const)
-                p1 = p1.next
+            if p2 and (not p1 or p1.exp < p2.exp):
+                result.insert(p2.exp, p2.const)
                 p2 = p2.next
 
             elif p1 and (not p2 or p1.exp > p2.exp):
@@ -119,9 +120,12 @@ class polynomials:
                 p1 = p1.next
             
             else:
-                result.insert(p2.exp, p2.const)
+                new_const = p1.const + p2.const
+                if new_const != 0:
+                    result.insert(p1.exp, new_const)
+                p1 = p1.next
                 p2 = p2.next
-
+                
         return result
         
 
@@ -155,6 +159,8 @@ if __name__ == "__main__":
 
     result = polynomials.sum(x, y)
     result.sort()
-    print("SUM: ")
+
+    print("------------------------")
+    print("Sum of the polynomials: ")
     result.show_polynomial()
     
